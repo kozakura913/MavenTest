@@ -15,6 +15,12 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B deploy
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "ActionDeploy"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
