@@ -1,0 +1,19 @@
+name: Maven deploy
+on:
+  workflow_dispatch:
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'liberica'
+          java-version: '8'
+          cache: 'maven'
+      - name: Build with Maven
+        run: mvn -B deploy
+      - name: Push changes
+        uses: ad-m/github-push-action@master
