@@ -27,13 +27,13 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git tag -a v${cver} -m 'version '${cver}
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "/doc/*.jar"
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "/doc/*.jar"
+          token: ${{ secrets.GITHUB_TOKEN }}
