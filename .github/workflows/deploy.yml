@@ -28,7 +28,8 @@ jobs:
           git config user.email github-actions@github.com
           git tag -a v${cver} -m 'version '${cver}
           echo "ReleaseTag=v"${cver} >> $GITHUB_ENV
-          echo "ReleaseFile=./docs/*/"${cver}"/*"${cver}"*.jar" >> $GITHUB_ENV
+          afiles=$(find . -path "*/docs/*/"${cver}"/*"${cver}"*.jar" ! -path "*-sources.jar" | tr "\n" ",")
+          echo "ReleaseFile="${afiles: -1} >> $GITHUB_ENV
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -37,6 +38,8 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ env.ReleaseVer }}
+          allowUpdates: true
+          ArtifactErrorsFailBuild: true
+          artifacts: ${{ env.ReleaseFile }}
           tag: ${{ env.ReleaseTag }}
           token: ${{ secrets.GITHUB_TOKEN }}
