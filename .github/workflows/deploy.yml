@@ -16,7 +16,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B deploy
       - name: Create Tag
-        run: /gittag.sh
+        run: ./gittag.sh
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
