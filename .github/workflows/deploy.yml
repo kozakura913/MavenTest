@@ -16,9 +16,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B deploy
       - name: Create Tag
-        run: |
-        cver=$(grep -o "<version[^>]*>[^<]*</version>" pom.xml | head -n 1 | sed -e "s/<version>\(.*\)<\/version>/\1/")
-        git tag -a v${cver} -m 'version '${cver}
+        run: /gittag.sh
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
