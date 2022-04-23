@@ -9,10 +9,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 	<distributionManagement>
-  <repository>
-    <id>exportId</id>
-    <url>file://${project.basedir}/docs</url>
-  </repository>
+   <repository>
+     <id>github</id>
+     <name>GitHub kozakura913 Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/kozakura913/MavenTest</url>
+   </repository>
 </distributionManagement>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
