@@ -28,7 +28,7 @@ jobs:
           git config user.email github-actions@github.com
           git tag -a v${cver} -m 'version '${cver}
           echo "ReleaseTag=v"${cver} >> $GITHUB_ENV
-          afiles=$(find . -path "*/docs/*/"${cver}"/*"${cver}"*.jar" ! -path "*-sources.jar" | tr "\n" ",")
+          afiles=$(find . -path "*/docs/*/"${cver}"/*"${cver}"*.jar" | tr "\n" ",")
           echo "ReleaseFile="${afiles/%?/} >> $GITHUB_ENV
       - name: Push changes
         uses: ad-m/github-push-action@master
